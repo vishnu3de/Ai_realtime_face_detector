@@ -17,7 +17,18 @@ while True:
     #code for detect face coordinates
     detectedimage=trained_face_data.detectMultiScale(bwimage)
 
-   
+    # #appply this coordinates into video (also used loop to find all the face within one run)
+    for (x,y,w,h) in detectedimage:
+        cv2.rectangle(frame,(x,y),(x+w,y+h),(0,250,0), 2)
+
+    #video show
+    cv2.imshow("Face detection",frame)
+
+    key=cv2.waitKey(50)
+
+    #stop if q press suing ascii(81 = Q , 113=q)
+    if key==81 or key==113:
+        break
 
 #to stop the video
 video.release()
